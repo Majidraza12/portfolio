@@ -4,20 +4,20 @@ import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
 const archive = [
   {
+    title: 'FragPunk Draft Tool',
+    blurb:
+      'Real-time BO3/BO5 league draft room — map bans and picks, side selection, and lancer bans synced live between both captains over Supabase Realtime, with spectator mode and Discord export. In active use for league matches.',
+    stack: ['Next.js', 'TypeScript', 'Supabase Realtime', 'Playwright'],
+    github: null,
+    live: 'https://frag-punk-draft.vercel.app',
+    year: '2026',
+  },
+  {
     title: 'Rate Limiter Service',
     blurb:
       'Spring Boot rate limiting service with pluggable Token Bucket and Sliding Window strategies behind a config-driven strategy interface, exposed over REST.',
     stack: ['Java', 'Spring Boot', 'Maven'],
     github: 'https://github.com/Majidraza12/ratelimiter',
-    live: null,
-    year: '2026',
-  },
-  {
-    title: 'Neon Tic Tac Toe',
-    blurb:
-      'Zero-dependency browser game in vanilla JS — three difficulty tiers of AI opponent and localStorage score tracking, in three files.',
-    stack: ['JavaScript', 'CSS'],
-    github: 'https://github.com/Majidraza12/neon-tictactoe',
     live: null,
     year: '2026',
   },
@@ -108,15 +108,17 @@ function ArchiveCard({ item }) {
       </div>
 
       <div className="flex items-center gap-3 pt-1">
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-sky-400 transition-colors"
-        >
-          <FaGithub size={13} />
-          Source
-        </a>
+        {github && (
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-sky-400 transition-colors"
+          >
+            <FaGithub size={13} />
+            Source
+          </a>
+        )}
         {live && (
           <a
             href={live}

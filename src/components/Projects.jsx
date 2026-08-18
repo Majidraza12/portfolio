@@ -18,20 +18,6 @@ const projects = [
     date: 'Jun 2026 – Aug 2026',
   },
   {
-    title: 'FragPunk Draft Tool',
-    tagline: 'Real-time map & lancer draft for league matches',
-    description:
-      'Real-time BO3/BO5 draft tool for the FragPunk league — captains ban maps, pick maps, choose sides, and ban lancers live in a shared room, synced over Supabase Realtime. Separate home/away links scope each captain to their own actions, with spectator mode, Discord export, auto-expiring rooms, and per-IP rate limiting. In active use for live league matches.',
-    stack: ['Next.js', 'TypeScript', 'Supabase Realtime', 'Postgres', 'Playwright'],
-    accent: '#f472b6',
-    accentBg: 'rgba(244,114,182,0.08)',
-    gradient: 'linear-gradient(135deg, #db2777, #9d174d)',
-    category: 'Real-Time / Live',
-    github: null,
-    live: 'https://frag-punk-draft.vercel.app',
-    date: 'Jul 2026',
-  },
-  {
     title: 'Algomaxx',
     tagline: 'DSA practice SaaS with an AI coach',
     description:
@@ -195,12 +181,12 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
-            A selection of things I've built — from systems programming in Rust to real-time multiplayer tooling, full-stack SaaS, and deep-learning pipelines.
+            A selection of things I've built — from systems programming in Rust to full-stack SaaS and deep-learning pipelines.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
