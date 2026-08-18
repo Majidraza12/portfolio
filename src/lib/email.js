@@ -1,48 +1,51 @@
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+import emailjs from '@emailjs/browser'
+
+const SERVICE_ID = import.meta.env.VITE_SERVICE_ID
+const CONFIRMATION_TEMPLATE_ID = import.meta.env.VITE_CONTACT_CONFIRMATION_TEMPLATEID
+const MESSAGE_TEMPLATE_ID = import.meta.env.VITE_MESSAGE_SENDER_TEMPLATEID
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 // Surfaced in the UI so a missing/misconfigured deploy fails visibly
 // instead of silently pretending the message went through.
-export const isEmailConfigured = Boolean(ACCESS_KEY)
+export const isEmailConfigured = Boolean(
+  SERVICE_ID && MESSAGE_TEMPLATE_ID && PUBLIC_KEY
+)
+
+function templateParams(formData) {
+  return {
+    to_name: 'Majid',
+    Username: formData.get('name'),
+    subject: formData.get('subject'),
+    email: formData.get('email'),
+    message: formData.get('message'),
+  }
+}
 
 /**
- * Sends the contact form through Web3Forms, which relays to the address the
- * access key is registered against. No OAuth grant to expire, and nothing
- * sends from a personal mail account.
+ * Sends the message to Majid, then best-effort sends a confirmation back to
+ * the sender. The confirmation failing must not report the whole send as
+ * failed, since the message itself already arrived.
  */
-export async function sendContactMessage(formData) {
+export async function sendContactEmails(formData) {
   if (!isEmailConfigured) {
     return { ok: false, reason: 'unconfigured' }
   }
 
-  const payload = {
-    access_key: ACCESS_KEY,
-    name: formData.get('name'),
-    email: formData.get('email'),
-    subject: formData.get('subject'),
-    message: formData.get('message'),
-    from_name: 'Portfolio contact form',
-    // Hitting Reply on the notification goes straight to whoever wrote in,
-    // rather than to Web3Forms.
-    replyto: formData.get('email'),
-    // Web3Forms drops the submission when this hidden field is filled,
-    // which only a bot auto-completing every input would do.
-    botcheck: formData.get('botcheck') ?? '',
-  }
+  const params = templateParams(formData)
 
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload),
-    })
-
-    const data = await res.json().catch(() => null)
-
-    if (res.ok && data && data.success) {
-      return { ok: true }
-    }
-    return { ok: false, reason: 'send-failed', error: data }
+    await emailjs.send(SERVICE_ID, MESSAGE_TEMPLATE_ID, params, PUBLIC_KEY)
   } catch (error) {
-    return { ok: false, reason: 'network', error }
+    return { ok: false, reason: 'send-failed', error }
   }
+
+  if (CONFIRMATION_TEMPLATE_ID) {
+    try {
+      await emailjs.send(SERVICE_ID, CONFIRMATION_TEMPLATE_ID, params, PUBLIC_KEY)
+    } catch {
+      // Swallowed on purpose: the message reached Majid, which is what matters.
+    }
+  }
+
+  return { ok: true }
 }
