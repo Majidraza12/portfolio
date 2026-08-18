@@ -111,7 +111,7 @@ export default function About() {
                 finding out where they broke.
               </p>
               <p>
-                I wrote <span className="text-sky-400 font-medium">Scribbet</span>, a Windows
+                I wrote <span className="text-violet-400 font-medium">Scribbet</span>, a Windows
                 dictation app in Rust that runs Whisper entirely on your own GPU. It transcribes at{' '}
                 <span className="text-white font-medium">183 ms p50</span>, roughly{' '}
                 <span className="text-white font-medium">6.7x faster</span> than the CPU path on
@@ -125,8 +125,9 @@ export default function About() {
                 drafts for league matches and has real people using it right now.
               </p>
               <p>
-                I've also led a team at JP Morgan Chase building a budget dashboard for students,
-                from scoping through delivery. What I care about most is the unglamorous part:
+                I've also led a team at{' '}
+                <span className="text-sky-400 font-medium">JP Morgan Chase</span> building a budget
+                dashboard for students, from scoping through delivery. What I care about most is the unglamorous part:
                 benchmarks that survive scrutiny, tests that catch real bugs, and pipelines that
                 ship.
               </p>
