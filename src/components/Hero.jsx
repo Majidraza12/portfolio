@@ -206,7 +206,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#about"
+        href="#projects"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 hover:text-sky-400 transition-colors"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

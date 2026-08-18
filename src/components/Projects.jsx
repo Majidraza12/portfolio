@@ -157,7 +157,7 @@ export default function Projects() {
     <section
       id="projects"
       className="relative py-28 px-6 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #080820 0%, #050511 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #050511 0%, #080820 45%, #050511 100%)' }}
     >
       <div className="absolute inset-0 dot-grid opacity-40" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-64 rounded-full bg-violet-700/6 blur-3xl pointer-events-none" />

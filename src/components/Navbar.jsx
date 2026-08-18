@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 
 const links = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
   { name: 'Resume', href: '/MajidRaza_Resume.pdf', external: true },
 ]
