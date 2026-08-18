@@ -167,14 +167,15 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200"
+                    className="w-9 h-9 rounded-lg flex items-center justify-center"
                     style={{
                       background: 'rgba(255,255,255,0.05)',
                       border: '1px solid rgba(255,255,255,0.10)',
                       color: 'rgba(255,255,255,0.5)',
                     }}
                     whileHover={{ scale: 1.15, color, borderColor: color + '60', y: -2 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.92 }}
+                    transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Icon size={15} />
                   </motion.a>
@@ -299,7 +300,8 @@ export default function Contact() {
         >
           <p className="text-slate-500 text-sm">
             Designed & built by{' '}
-            <span className="gradient-text font-medium">Majid Raza</span> · 2025
+            <span className="gradient-text font-medium">Majid Raza</span> ·{' '}
+            {new Date().getFullYear()}
           </p>
           <p className="text-slate-600 text-xs mt-1 font-mono">
             React · Framer Motion · Tailwind CSS
