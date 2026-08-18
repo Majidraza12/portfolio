@@ -2,7 +2,7 @@
 
 Personal portfolio site. React + Vite + Tailwind CSS + Framer Motion.
 
-**Live:** https://majidraza.vercel.app
+**Live:** https://majidraza-portfolio-site.vercel.app
 
 ## Development
 
