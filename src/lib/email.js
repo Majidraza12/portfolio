@@ -21,6 +21,9 @@ export async function sendContactMessage(formData) {
     subject: formData.get('subject'),
     message: formData.get('message'),
     from_name: 'Portfolio contact form',
+    // Hitting Reply on the notification goes straight to whoever wrote in,
+    // rather than to Web3Forms.
+    replyto: formData.get('email'),
     // Web3Forms drops the submission when this hidden field is filled,
     // which only a bot auto-completing every input would do.
     botcheck: formData.get('botcheck') ?? '',
