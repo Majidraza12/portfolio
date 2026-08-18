@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiMail, HiPaperAirplane, HiExclamationCircle } from 'react-icons/hi'
-import { sendContactEmails } from '../lib/email'
+import { sendContactMessage } from '../lib/email'
 
 const socials = [
   { icon: FaGithub, href: 'https://github.com/Majidraza12', label: 'GitHub', color: '#fff' },
@@ -80,7 +80,7 @@ export default function Contact() {
     const form = e.currentTarget
     setStatus('sending')
 
-    const result = await sendContactEmails(new FormData(form))
+    const result = await sendContactMessage(new FormData(form))
 
     if (result.ok) {
       form.reset()
@@ -217,6 +217,16 @@ export default function Contact() {
                 backdropFilter: 'blur(12px)',
               }}
             >
+              {/* Spam honeypot: hidden from people, filled by bots, rejected by Web3Forms */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ display: 'none' }}
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <InputField label="Name" id="name" placeholder="Your name" required disabled={isSending} />
                 <InputField label="Email" type="email" id="email" placeholder="you@example.com" required disabled={isSending} />
