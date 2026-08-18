@@ -6,7 +6,7 @@ const archive = [
   {
     title: 'FragPunk Draft Tool',
     blurb:
-      'Real-time BO3/BO5 league draft room — map bans and picks, side selection, and lancer bans synced live between both captains over Supabase Realtime, with spectator mode and Discord export. In active use for league matches.',
+      'Real-time BO3/BO5 league draft room with map bans and picks, side selection, and lancer bans synced live between both captains over Supabase Realtime, with spectator mode and Discord export. In active use for league matches.',
     stack: ['Next.js', 'TypeScript', 'Supabase Realtime', 'Playwright'],
     github: null,
     live: 'https://frag-punk-draft.vercel.app',
@@ -24,7 +24,7 @@ const archive = [
   {
     title: 'Rent Prediction Model',
     blurb:
-      'End-to-end rent forecasting — data cleaning and model training in a Jupyter notebook, served through a Python API behind a Next.js frontend.',
+      'End-to-end rent forecasting. Data cleaning and model training in a Jupyter notebook, served through a Python API behind a Next.js frontend.',
     stack: ['Python', 'TypeScript', 'Next.js', 'Jupyter'],
     github: 'https://github.com/Majidraza12/rent-prediction-model',
     live: null,
@@ -33,7 +33,7 @@ const archive = [
   {
     title: 'Orbitize',
     blurb:
-      'Project management app — create projects, add and assign tasks, commit changes for collaboration, with email notifications on key events.',
+      'Project management app for creating projects, adding and assigning tasks, commit changes for collaboration, with email notifications on key events.',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'ShadCN UI'],
     github: 'https://github.com/Majidraza12/Orbitize',
     live: null,
@@ -42,7 +42,7 @@ const archive = [
   {
     title: 'Pomofy',
     blurb:
-      'Full-stack Pomodoro timer — Express and MongoDB backend with JWT auth, session tracking, and Cloudinary uploads, paired with a Vite React client.',
+      'Full-stack Pomodoro timer. Express and MongoDB backend with JWT auth, session tracking, and Cloudinary uploads, paired with a Vite React client.',
     stack: ['React', 'Node.js', 'Express', 'MongoDB'],
     github: 'https://github.com/Majidraza12/pomofy',
     live: null,
@@ -157,7 +157,7 @@ export default function Archive() {
             Everything <span className="gradient-text">Else</span>
           </h2>
           <p className="text-slate-500 max-w-lg mx-auto text-sm">
-            Older builds and side projects — kept here because they're still mine, and the
+            Older builds and side projects, kept here because they're still mine, and the
             learning curve is part of the story.
           </p>
         </motion.div>

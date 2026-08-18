@@ -1,4 +1,4 @@
-# Majid Raza — Portfolio
+# Majid Raza Portfolio
 
 Personal portfolio site. React + Vite + Tailwind CSS + Framer Motion.
 

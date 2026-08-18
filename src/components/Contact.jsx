@@ -144,7 +144,7 @@ export default function Contact() {
               <h3 className="font-semibold text-white mb-2">Get in touch</h3>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
                 Whether it's a research collaboration, an internship opportunity, or a side
-                project — I'd love to hear from you. Usually respond within 24 hours.
+                project, I'd love to hear from you. Usually respond within 24 hours.
               </p>
 
               <div className="space-y-3">
@@ -200,7 +200,7 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Right — Contact form */}
+          {/* Right: contact form */}
           <motion.div
             className="lg:col-span-3"
             initial={{ opacity: 0, x: 30 }}

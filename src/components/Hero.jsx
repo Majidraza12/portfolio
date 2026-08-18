@@ -35,7 +35,7 @@ function useTypewriter(words) {
   return words[wordIdx].slice(0, charIdx)
 }
 
-// Deterministic pseudo-random particles — stable across renders
+// Deterministic pseudo-random particles, stable across renders
 const PARTICLES = Array.from({ length: 48 }, (_, i) => ({
   id: i,
   left: `${((i * 37 + 11) % 97) + 1}%`,
@@ -146,9 +146,8 @@ export default function Hero() {
           className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10"
         >
           CS student at{' '}
-          <span className="text-sky-400 font-medium">Illinois Institute of Technology</span>{' '}
-          (Minor in AI) — building local-first Rust apps, deep-learning pipelines, and full-stack products.
-          Previously at JP Morgan Chase & Wells Fargo.
+          <span className="text-sky-400 font-medium">Illinois Institute of Technology</span>,
+          building local-first Rust apps, deep-learning pipelines, and full-stack products.
         </motion.p>
 
         {/* CTA Buttons */}

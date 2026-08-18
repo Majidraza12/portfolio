@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { HiAcademicCap, HiLocationMarker, HiCode } from 'react-icons/hi'
-import { FaBrain } from 'react-icons/fa'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -14,7 +13,7 @@ const fadeUp = {
 
 const stats = [
   { value: '10+', label: 'Projects Built' },
-  { value: '2+', label: 'Experiences' },
+  { value: '7', label: 'Languages' },
   { value: '40+', label: 'Technologies' },
   { value: '2027', label: 'Grad Year' },
 ]
@@ -22,8 +21,7 @@ const stats = [
 const badges = [
   { icon: HiAcademicCap, text: 'Illinois Institute of Technology' },
   { icon: HiLocationMarker, text: 'Chicago, IL' },
-  { icon: FaBrain, text: 'Minor in Artificial Intelligence' },
-  { icon: HiCode, text: 'JP Morgan Chase & Wells Fargo Alum' },
+  { icon: HiCode, text: 'BS Computer Science, May 2027' },
 ]
 
 export default function About() {
@@ -42,7 +40,7 @@ export default function About() {
       <div ref={ref} className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Left — Photo + badges */}
+          {/* Left: photo + badges */}
           <motion.div
             className="flex flex-col items-center lg:items-start gap-6"
             initial="hidden"
@@ -89,7 +87,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right — Bio */}
+          {/* Right: bio */}
           <motion.div
             initial="hidden"
             animate={isInView ? 'visible' : 'hidden'}
@@ -107,23 +105,30 @@ export default function About() {
 
             <div className="space-y-4 text-slate-400 leading-relaxed">
               <p>
-                Hey! I'm Majid — a Computer Science student at{' '}
-                <span className="text-sky-400 font-medium">Illinois Institute of Technology</span>{' '}
-                with a Minor in AI. I'm passionate about the intersection of software engineering
-                and machine learning.
+                Hey! I'm Majid, a Computer Science student at{' '}
+                <span className="text-sky-400 font-medium">Illinois Institute of Technology</span>.
+                Most of what I know came from building things that had to actually work, then
+                finding out where they broke.
               </p>
               <p>
-                I've worked with{' '}
-                <span className="text-violet-400 font-medium">JP Morgan Chase</span> on a budget
-                management dashboard and completed a{' '}
-                <span className="text-violet-400 font-medium">Wells Fargo</span> Software Engineer
-                simulation — gaining real-world exposure to enterprise systems, Agile development,
-                and ORM-backed backends.
+                I wrote <span className="text-sky-400 font-medium">Scribbet</span>, a Windows
+                dictation app in Rust that runs Whisper entirely on your own GPU. It transcribes at{' '}
+                <span className="text-white font-medium">183 ms p50</span>, roughly{' '}
+                <span className="text-white font-medium">6.7x faster</span> than the CPU path on
+                the same machine.
               </p>
               <p>
-                Outside of classes I'm shipping local-first desktop software in Rust, deep-learning
-                pipelines, and full-stack products. Always chasing the next interesting
-                engineering challenge.
+                <span className="text-violet-400 font-medium">Algomaxx</span> is a DSA practice
+                platform running sandboxed code execution and Stripe billing, with 208 tests
+                holding it together. The{' '}
+                <span className="text-violet-400 font-medium">FragPunk Draft Tool</span> runs live
+                drafts for league matches and has real people using it right now.
+              </p>
+              <p>
+                I've also led a team at JP Morgan Chase building a budget dashboard for students,
+                from scoping through delivery. What I care about most is the unglamorous part:
+                benchmarks that survive scrutiny, tests that catch real bugs, and pipelines that
+                ship.
               </p>
             </div>
 

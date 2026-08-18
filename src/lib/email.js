@@ -24,7 +24,7 @@ function templateParams(formData) {
 /**
  * Sends the message to Majid, then best-effort sends a confirmation back to
  * the sender. The confirmation failing must not report the whole send as
- * failed — the message itself already arrived.
+ * failed, since the message itself already arrived.
  */
 export async function sendContactEmails(formData) {
   if (!isEmailConfigured) {

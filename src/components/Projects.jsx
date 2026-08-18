@@ -5,9 +5,9 @@ import { FaGithub, FaExternalLinkAlt, FaLock } from 'react-icons/fa'
 const projects = [
   {
     title: 'Scribbet',
-    tagline: 'Local-first Windows dictation — fully on-device',
+    tagline: 'Local-first Windows dictation, fully on-device',
     description:
-      'Windows dictation app in Rust (10-crate workspace, Tauri + Svelte) transcribing speech entirely on-device via Whisper (whisper.cpp) — no cloud, no account. A Vulkan GPU backend falls back to CPU at runtime. Benchmarked at 183 ms p50 latency, 6.7x faster than the CPU fallback on identical hardware. Ships NSIS/MSI installers with checksums, provenance attestation, and a version guard.',
+      'Windows dictation app in Rust (10-crate workspace, Tauri + Svelte) transcribing speech entirely on-device via Whisper (whisper.cpp). No cloud, no account. A Vulkan GPU backend falls back to CPU at runtime. Benchmarked at 183 ms p50 latency, 6.7x faster than the CPU fallback on identical hardware. Ships NSIS/MSI installers with checksums, provenance attestation, and a version guard.',
     stack: ['Rust', 'Tauri', 'Svelte', 'Whisper', 'Vulkan', 'GitHub Actions'],
     accent: '#38bdf8',
     accentBg: 'rgba(56,189,248,0.08)',
@@ -15,13 +15,13 @@ const projects = [
     category: 'Rust / Systems',
     github: 'https://github.com/Majidraza12/Scribbet',
     live: 'https://scribbet.vercel.app/',
-    date: 'Jun 2026 – Aug 2026',
+    date: 'Jun - Aug 2026',
   },
   {
     title: 'Algomaxx',
     tagline: 'DSA practice SaaS with an AI coach',
     description:
-      'Full-stack DSA practice platform on Next.js and Supabase (Postgres/Auth/RLS) with Stripe billing, a 150-problem bank, timed focus mode, curated tracks, and a Claude-powered coach with weak-pattern analysis — backed by 208 tests. Grading runs on sandboxed Judge0 execution with layered checkers for linked-list, graph, and tree problems.',
+      'Full-stack DSA practice platform on Next.js and Supabase (Postgres/Auth/RLS) with Stripe billing, a 150-problem bank, timed focus mode, curated tracks, and a Claude-powered coach with weak-pattern analysis, backed by 208 tests. Grading runs on sandboxed Judge0 execution with layered checkers for linked-list, graph, and tree problems.',
     stack: ['Next.js', 'React', 'Supabase', 'Judge0', 'Stripe', 'Claude API'],
     accent: '#a78bfa',
     accentBg: 'rgba(167,139,250,0.08)',
@@ -29,13 +29,13 @@ const projects = [
     category: 'Full-Stack SaaS',
     github: 'https://github.com/Majidraza12/Algomaxx',
     live: null,
-    date: 'Jun 2026 – Aug 2026',
+    date: 'Jun - Aug 2026',
   },
   {
     title: 'Video Violence Detection',
     tagline: 'CNN-LSTM classifier for video streams',
     description:
-      'End-to-end CNN-LSTM video classifier — per-frame ResNet-18 feature extraction feeding an LSTM over 16 frames — reaching 89% accuracy and 0.92 F1 on the violent class, shipped as a Streamlit app and CLI. Built with stratified splits, inverse-frequency weighted loss for a 2:1 imbalance, and fixed-seed reproducibility across all RNGs.',
+      'End-to-end CNN-LSTM video classifier. Per-frame ResNet-18 feature extraction feeds an LSTM over 16 frames, reaching 89% accuracy and 0.92 F1 on the violent class, shipped as a Streamlit app and CLI. Built with stratified splits, inverse-frequency weighted loss for a 2:1 imbalance, and fixed-seed reproducibility across all RNGs.',
     stack: ['Python', 'PyTorch', 'ResNet-18', 'LSTM', 'Streamlit'],
     accent: '#22d3ee',
     accentBg: 'rgba(34,211,238,0.08)',
@@ -43,7 +43,7 @@ const projects = [
     category: 'AI / ML',
     github: 'https://github.com/Majidraza12/incident-detection-project',
     live: null,
-    date: 'Jul 2026 – Aug 2026',
+    date: 'Jul - Aug 2026',
   },
 ]
 
@@ -181,7 +181,7 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
-            A selection of things I've built — from systems programming in Rust to full-stack SaaS and deep-learning pipelines.
+            A selection of things I've built, from systems programming in Rust to full-stack SaaS and deep-learning pipelines.
           </p>
         </motion.div>
 
