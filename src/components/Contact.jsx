@@ -1,7 +1,8 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { HiMail, HiPaperAirplane } from 'react-icons/hi'
+import { HiMail, HiPaperAirplane, HiExclamationCircle } from 'react-icons/hi'
+import { sendContactEmails } from '../lib/email'
 
 const socials = [
   { icon: FaGithub, href: 'https://github.com/Majidraza12', label: 'GitHub', color: '#fff' },
@@ -9,7 +10,7 @@ const socials = [
   { icon: HiMail, href: 'mailto:majidraza.bss@gmail.com', label: 'Email', color: '#a78bfa' },
 ]
 
-function InputField({ label, type = 'text', id, placeholder, multiline = false }) {
+function InputField({ label, type = 'text', id, placeholder, multiline = false, required = false, disabled = false }) {
   return (
     <div>
       <label htmlFor={id} className="block text-sm font-medium text-slate-300 mb-2">
@@ -21,6 +22,8 @@ function InputField({ label, type = 'text', id, placeholder, multiline = false }
           name={id}
           rows={5}
           placeholder={placeholder}
+          required={required}
+          disabled={disabled}
           className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 outline-none focus:ring-2 resize-none transition-all duration-300"
           style={{
             background: 'rgba(255,255,255,0.04)',
@@ -41,6 +44,8 @@ function InputField({ label, type = 'text', id, placeholder, multiline = false }
           id={id}
           name={id}
           placeholder={placeholder}
+          required={required}
+          disabled={disabled}
           className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 outline-none transition-all duration-300"
           style={{
             background: 'rgba(255,255,255,0.04)',
@@ -63,12 +68,27 @@ function InputField({ label, type = 'text', id, placeholder, multiline = false }
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
-  const [sent, setSent] = useState(false)
+  // 'idle' | 'sending' | 'sent' | 'error'
+  const [status, setStatus] = useState('idle')
 
-  function handleSubmit(e) {
+  const isSending = status === 'sending'
+
+  async function handleSubmit(e) {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
+    if (status === 'sending') return
+
+    const form = e.currentTarget
+    setStatus('sending')
+
+    const result = await sendContactEmails(new FormData(form))
+
+    if (result.ok) {
+      form.reset()
+      setStatus('sent')
+      setTimeout(() => setStatus('idle'), 6000)
+    } else {
+      setStatus('error')
+    }
   }
 
   return (
@@ -197,30 +217,41 @@ export default function Contact() {
               }}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <InputField label="Name" id="name" placeholder="Your name" />
-                <InputField label="Email" type="email" id="email" placeholder="you@example.com" />
+                <InputField label="Name" id="name" placeholder="Your name" required disabled={isSending} />
+                <InputField label="Email" type="email" id="email" placeholder="you@example.com" required disabled={isSending} />
               </div>
 
-              <InputField label="Subject" id="subject" placeholder="What's this about?" />
+              <InputField label="Subject" id="subject" placeholder="What's this about?" required disabled={isSending} />
 
               <InputField
                 label="Message"
                 id="message"
                 placeholder="Tell me about your project, idea, or question..."
                 multiline
+                required
+                disabled={isSending}
               />
 
               <motion.button
                 type="submit"
-                className="w-full btn-primary justify-center py-3.5"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSending}
+                className="w-full btn-primary justify-center py-3.5 disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={isSending ? {} : { scale: 1.02 }}
+                whileTap={isSending ? {} : { scale: 0.98 }}
               >
                 <span className="flex items-center gap-2">
-                  {sent ? (
+                  {status === 'sent' ? (
                     <>
                       <span>Message Sent!</span>
                       <span>🎉</span>
+                    </>
+                  ) : isSending ? (
+                    <>
+                      <span
+                        className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"
+                        aria-hidden="true"
+                      />
+                      Sending...
                     </>
                   ) : (
                     <>
@@ -230,6 +261,31 @@ export default function Contact() {
                   )}
                 </span>
               </motion.button>
+
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-start gap-2.5 rounded-xl px-4 py-3 text-sm"
+                  style={{
+                    background: 'rgba(248,113,113,0.07)',
+                    border: '1px solid rgba(248,113,113,0.25)',
+                  }}
+                  role="alert"
+                >
+                  <HiExclamationCircle className="text-red-400 shrink-0 mt-0.5" size={16} />
+                  <span className="text-slate-300">
+                    That didn't go through. Email me directly at{' '}
+                    <a
+                      href="mailto:majidraza.bss@gmail.com"
+                      className="text-sky-400 hover:text-sky-300 underline underline-offset-2"
+                    >
+                      majidraza.bss@gmail.com
+                    </a>
+                    .
+                  </span>
+                </motion.div>
+              )}
             </form>
           </motion.div>
         </div>
