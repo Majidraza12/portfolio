@@ -1,44 +1,32 @@
-import emailjs from '@emailjs/browser'
-
-const SERVICE_ID = import.meta.env.VITE_SERVICE_ID
-const MESSAGE_TEMPLATE_ID = import.meta.env.VITE_MESSAGE_SENDER_TEMPLATEID
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
-// Surfaced in the UI so a missing/misconfigured deploy fails visibly
-// instead of silently pretending the message went through.
-export const isEmailConfigured = Boolean(
-  SERVICE_ID && MESSAGE_TEMPLATE_ID && PUBLIC_KEY
-)
-
-function templateParams(formData) {
-  return {
-    to_name: 'Majid',
-    Username: formData.get('name'),
-    subject: formData.get('subject'),
-    email: formData.get('email'),
-    message: formData.get('message'),
-  }
-}
-
 /**
- * Sends the message to Majid. The sender deliberately gets no email back:
- * the form's "Message Sent!" state is the only acknowledgement, and Majid
- * replies by hand.
+ * Posts the message to /api/contact, which holds the EmailJS credentials and
+ * performs the actual send.
+ *
+ * Nothing secret lives in this file on purpose. Anything imported into the
+ * client bundle is readable by anyone who opens devtools, so the credentials
+ * stay in the serverless function as non-VITE_ env vars.
  */
 export async function sendContactEmail(formData) {
-  if (!isEmailConfigured) {
-    return { ok: false, reason: 'unconfigured' }
-  }
+  let response
 
   try {
-    await emailjs.send(
-      SERVICE_ID,
-      MESSAGE_TEMPLATE_ID,
-      templateParams(formData),
-      PUBLIC_KEY
-    )
+    response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      }),
+    })
   } catch (error) {
-    return { ok: false, reason: 'send-failed', error }
+    return { ok: false, reason: 'network', error }
+  }
+
+  if (!response.ok) {
+    const { reason } = await response.json().catch(() => ({}))
+    return { ok: false, reason: reason ?? 'send-failed' }
   }
 
   return { ok: true }
