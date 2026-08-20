@@ -108,7 +108,7 @@ export default async function handler(req, res) {
     // misconfiguration never leaks provider detail into the page.
     const detail = await response.text().catch(() => '')
     console.error('EmailJS rejected the send', response.status, detail)
-    return res.status(502).json({ ok: false, reason: 'send-failed' })
+    return res.status(502).json({ ok: false, reason: 'send-failed', upstream: response.status, detail })
   }
 
   return res.status(200).json({ ok: true })
