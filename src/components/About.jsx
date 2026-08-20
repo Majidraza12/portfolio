@@ -51,8 +51,13 @@ export default function About() {
             <div className="relative">
               <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl p-[2px] avatar-ring">
                 <div className="w-full h-full rounded-2xl bg-[#0a0a1f] flex flex-col items-center justify-center gap-2 relative overflow-hidden">
-                  <span className="text-5xl font-extrabold gradient-text">MR</span>
-                  <span className="text-xs text-slate-500 font-mono">photo coming soon</span>
+                  <span
+                    className="text-6xl font-extrabold gradient-text tracking-tight"
+                    role="img"
+                    aria-label="Majid Raza"
+                  >
+                    MR
+                  </span>
 
                   <motion.div
                     className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1.5 py-2 text-xs font-medium"
