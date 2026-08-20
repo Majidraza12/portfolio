@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiMail, HiPaperAirplane, HiExclamationCircle } from 'react-icons/hi'
-import { sendContactEmails } from '../lib/email'
+import { sendContactEmail } from '../lib/email'
 
 const socials = [
   { icon: FaGithub, href: 'https://github.com/Majidraza12', label: 'GitHub', color: '#fff' },
@@ -80,7 +80,7 @@ export default function Contact() {
     const form = e.currentTarget
     setStatus('sending')
 
-    const result = await sendContactEmails(new FormData(form))
+    const result = await sendContactEmail(new FormData(form))
 
     if (result.ok) {
       form.reset()
